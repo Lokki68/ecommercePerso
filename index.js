@@ -1,5 +1,6 @@
 const express = require("express");
 
+require("dotenv").config({ path: "./config/.env" });
 require("./config/db");
 
 const app = express();
@@ -18,6 +19,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//routes
+
+const userRoute = require("./routes/user.rte");
+
+app.use("/api/user", userRoute);
+
+//server
 app.listen(8080, () => {
   console.log("Listening on port : 8080");
 });

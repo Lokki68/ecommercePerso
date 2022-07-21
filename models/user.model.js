@@ -3,16 +3,6 @@ const { isEmail } = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      minLength: 3,
-      maxLength: 50,
-    },
-    lastName: {
-      type: String,
-      minLength: 3,
-      maxLength: 50,
-    },
     nickName: {
       type: String,
       required: true,
