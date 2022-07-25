@@ -22,8 +22,9 @@ app.use((req, res, next) => {
 //routes
 
 const userRoute = require("./routes/user.rte");
+const authRoute = require("./routes/auth.rte");
 
-app.use("/api/user", userRoute);
+app.use("/api/user", userRoute).use("/api/auth", authRoute);
 
 //server
 app.listen(8080, () => {

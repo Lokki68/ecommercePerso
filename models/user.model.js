@@ -23,6 +23,9 @@ const userSchema = new mongoose.Schema(
       minLength: 6,
       maxLength: 1024,
     },
+    carts: {
+      type: [String],
+    },
   },
   {
     timestamps: true,

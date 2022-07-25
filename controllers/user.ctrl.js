@@ -1,9 +1,8 @@
 const User = require("../models/user.model");
-const jwt = require("jsonwebtoken");
+const { sign } = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
-const TOKEN_SECRET = "NPiTyCZOPCjh95vJwIDjaTSAdzhmsWqn";
 
 const userController = {
   getUser: (req, res) => {
@@ -58,16 +57,9 @@ const userController = {
             res.json({
               status: 200,
               data: user,
-              token: jwt.sign(
-                { userId: user._id },
-                TOKEN_SECRET,
-                {
-                  expiresIn: maxAge,
-                },
-                (err, token) => {
-                  console.log(token);
-                }
-              ),
+              token: sign({ userId: user._id }, process.env.TOKEN_SECRET, {
+                expiresIn: maxAge,
+              }),
             });
           })
           .catch((err) => res.status(403).json({ msg: err.message }));
